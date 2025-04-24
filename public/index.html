@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Similarity Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Image Similarity Finder</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+      <label for="imageUpload">📤 Upload an image:</label>
+      <input type="file" name="image" id="imageUpload" accept="image/*" required />
+      <button type="submit">Find Similar</button>
+    </form>
+
+    <h2>Top 3 Similar Images in Our Data</h2>
+    <div class="results" id="resultsContainer"></div>
+  </div>
+
+  <footer>
+    <p>Created with ❤️ by Bhaskar Kumar | <a href="https://github.com">GitHub</a> | <a href="https://weaviate.io">Weaviate</a></p>
+  </footer>
+
+  <!-- <script>
+    fetch('/result/result.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('resultsContainer');
+        container.innerHTML = '';
+
+        data.forEach((item, index) => {
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          const img = document.createElement('img');
+          img.src = item.path;
+          img.alt = `Result ${index + 1}`;
+          img.className = 'result-img';
+
+          const info = document.createElement('div');
+          info.className = 'card-info';
+          info.innerHTML = `
+            <p><strong>File:</strong> ${item.text}</p>
+            <p><strong>Similarity:</strong> ${(item.certainty * 100).toFixed(2)}%</p>
+          `;
+
+          card.appendChild(img);
+          card.appendChild(info);
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('Failed to load results:', err);
+      });
+  </script> -->
+  <script>
+    // Preview the uploaded image
+    const imageInput = document.getElementById('imageUpload');
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const preview = document.createElement('img');
+        preview.src = URL.createObjectURL(file);
+        preview.alt = "Uploaded Image Preview";
+        preview.style.maxWidth = "300px";
+        preview.style.marginTop = "20px";
+        preview.style.borderRadius = "10px";
+        imageInput.insertAdjacentElement('afterend', preview);
+      }
+    });
+  
+    // Fetch and display result images
+    fetch('/result/result.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('resultsContainer');
+        container.innerHTML = '';
+  
+        data.forEach((item, index) => {
+          const card = document.createElement('div');
+          card.className = 'card';
+  
+          const img = document.createElement('img');
+          img.src = item.path;
+          img.alt = `Result ${index + 1}`;
+          img.className = 'result-img';
+  
+          const info = document.createElement('div');
+          info.className = 'card-info';
+          info.innerHTML = `
+            <p><strong>File:</strong> ${item.text}</p>
+            <p><strong>Similarity:</strong> ${(item.certainty * 100).toFixed(2)}%</p>
+          `;
+  
+          card.appendChild(img);
+          card.appendChild(info);
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('Failed to load results:', err);
+      });
+  </script>
+  
+</body>
+</html>

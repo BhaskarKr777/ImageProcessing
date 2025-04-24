@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/result/result_1.jpg",
+    "text": "089869fd2194377177b5b3ba3ba1c2502a2c9bab.png",
+    "certainty": "0.9032"
+  },
+  {
+    "path": "/result/result_2.jpg",
+    "text": "c7c2debdc06152cd2e3750e8766b857ec5b9fe95.png",
+    "certainty": "0.8923"
+  },
+  {
+    "path": "/result/result_3.jpg",
+    "text": "15fbb0955f6f5c12f3e4b3ffec4decfe78df2a01.png",
+    "certainty": "0.8901"
+  }
+]
